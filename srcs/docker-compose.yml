@@ -1,0 +1,16 @@
+version: 3.8
+services:
+	mariadb:
+		image: mariadb
+		ports:
+			- "3306"
+		volumes:
+			- database
+		networks:
+			- inception
+
+volumes:
+	database:
+	wordpress:
+networks:
+	inception:
