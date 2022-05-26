@@ -1,6 +1,6 @@
 FROM debian:10.12
 WORKDIR /var/lib/mysql
-COPY ./conf/start.sh ./start.sh
+COPY ./conf/start.sh /tmp/start.sh
 
 ARG DB_NAME
 ARG DB_PASSWORD
@@ -14,7 +14,7 @@ ENV MYSQL_ROOT_PASSWORD ${DB_ROOT_PASSWORD}
 
 RUN apt-get update && apt-get install mariadb-server -y
 
-RUN chmod +x start.sh && sh start.sh
+RUN chmod +x /tmp/start.sh && sh /tmp/start.sh
 
 CMD ["mysqld_safe"]
 

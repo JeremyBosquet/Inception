@@ -1,5 +1,15 @@
 version: "3.3"
 services:
+ nginx:
+  container_name: nginx
+  build: requirements/nginx
+  ports:
+   - "80:80"
+  volumes:
+   - wordpress:/var/www/html
+  networks:
+   - inception
+  restart: always
  mariadb:
   container_name: mariadb
   env_file:
@@ -26,6 +36,12 @@ volumes:
    type: none
    o: bind
    device: /home/jbosquet/data/mysql
+ wordpress:
+  driver: local
+  driver_opts:
+   type: none
+   o: bind
+   device: /home/jbosquet/data/wordpress
 
 networks:
  inception:
