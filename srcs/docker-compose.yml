@@ -1,16 +1,31 @@
-version: 3.8
+version: "3.3"
 services:
-	mariadb:
-		image: mariadb
-		ports:
-			- "3306"
-		volumes:
-			- database
-		networks:
-			- inception
+ mariadb:
+  container_name: mariadb
+  env_file:
+   - .env
+  build: 
+   context: requirements/mariadb
+   args:
+    - DB_NAME=${MYSQL_DB_NAME}
+    - DB_USER=${MYSQL_USER}
+    - DB_PASSWORD=${MYSQL_PASSWORD}
+    - DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  ports:
+   - "3306"
+  volumes:
+   - database:/var/lib/mysql
+  networks:
+   - inception
+  restart: always
 
 volumes:
-	database:
-	wordpress:
+ database:
+  driver: local
+  driver_opts:
+   type: none
+   o: bind
+   device: /home/jbosquet/data/mysql
+
 networks:
-	inception:
+ inception:

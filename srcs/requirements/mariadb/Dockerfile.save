@@ -1,0 +1,21 @@
+FROM debian:10.12
+WORKDIR /var/lib/mysql
+COPY ./conf .
+RUN apt-get update && apt-get install mariadb-server -y
+
+CMD ["mysqld_safe"]
+
+ENV MYSQL_DB_NAME ${MYSQL_DB_NAME}
+ENV MYSQL_ROOT_PASSWORD ${MYSQL_ROOT_PASSWORD}
+ENV MYSQL_USER ${MYSQL_USER}
+ENV MYSQL_PASSWORD ${MYSQL_PASSWORD}
+
+
+
+RUN chmod +x start.sh && sh start.sh
+RUN service mysql start && mysql -uroot -p < db.sql
+
+EXPOSE 3306
+sed -i "s|DB_NAME|$MYSQL_DB_NAME|g" ./db.sql
+sed -i "s|DB_USER|$MYSQL_USER|g" ./db.sql
+sed -i "s|DB_PASSWORD|$MYSQL_PASSWORD|g" ./db.sql
