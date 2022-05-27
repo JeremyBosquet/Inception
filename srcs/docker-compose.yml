@@ -1,10 +1,19 @@
 version: "3.3"
 services:
+ wordpress:
+  container_name: wordpress
+  depends_on:
+   - mariadb
+  build: requirements/wordpress
+  networks:
+   - inception
+  volumes:
+   - "wordpress:/var/www/html/"
+  restart: always
  nginx:
   container_name: nginx
   build: requirements/nginx
   ports:
-   - "80:80"
    - "443:443"
   volumes:
    - wordpress:/var/www/html
