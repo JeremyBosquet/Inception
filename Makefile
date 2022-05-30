@@ -4,8 +4,8 @@ build:
 	cd $(SRC) && sudo docker-compose build
 
 up: 
-	mkdir -p /home/jbosquet/data/mysql
-	mkdir -p /home/jbosquet/data/wordpress
+	sudo mkdir -p /home/jbosquet/data/mysql
+	sudo mkdir -p /home/jbosquet/data/wordpress
 	cd ${SRC} && sudo docker-compose up -d
 
 start: 
