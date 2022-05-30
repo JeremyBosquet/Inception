@@ -24,4 +24,4 @@ clear:
 
 re: down build up
 
-.PHONY: build up start stop down clearall re
+.PHONY: build up start stop down clear re
