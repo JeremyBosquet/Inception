@@ -8,8 +8,8 @@ if [ $status -eq 0 ]
 then
 	mysql -uroot -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB_NAME;"
 
-	mysql -uroot -e "CREATE USER IF NOT EXISTS $MYSQL_USER@'localhost' IDENTIFIED BY '$MYSQL_PASSWORD';"
-	mysql -uroot -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO $MYSQL_USER@'localhost';"
+	mysql -uroot -e "CREATE USER IF NOT EXISTS $MYSQL_USER@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+	mysql -uroot -e "GRANT ALL PRIVILEGES ON $MYSQL_DB_NAME.* TO $MYSQL_USER@'%';"
 	mysql -uroot -e "FLUSH PRIVILEGES;"
 
 	mysql -uroot -e "CREATE USER IF NOT EXISTS 'superuser'@'localhost' IDENTIFIED BY 'superPassword';"
