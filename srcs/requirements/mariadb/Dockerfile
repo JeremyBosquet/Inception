@@ -1,6 +1,7 @@
 FROM debian:10.12
 WORKDIR /var/lib/mysql
 COPY ./conf/start.sh /tmp/start.sh
+COPY ./conf/wordpress.sql /tmp/wordpress.sql
 
 ARG DB_NAME
 ARG DB_PASSWORD

@@ -18,4 +18,5 @@ then
 
 	mysql -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 	mysql -uroot -p$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
+	mysql -uroot -p$MYSQL_ROOT_PASSWORD inception < /tmp/wordpress.sql
 fi

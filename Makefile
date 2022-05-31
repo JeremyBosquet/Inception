@@ -1,5 +1,7 @@
 SRC := srcs/
 
+all: up
+
 build: 
 	cd $(SRC) && sudo docker-compose build
 
@@ -24,4 +26,4 @@ clear:
 
 re: down build up
 
-.PHONY: build up start stop down clear re
+.PHONY: all build up start stop down clear re
