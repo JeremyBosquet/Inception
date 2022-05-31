@@ -1,7 +1,10 @@
 #!/bin/sh
 service mysql start
 
+#Edit mariadb config for allow access from other container
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+
+#Verif if root password is already change else if not, create database and users
 mysql -uroot -e "show databases;"
 status=$?
 if [ $status -eq 0 ] 
