@@ -1,6 +1,6 @@
 SRC := srcs/
 
-all: up
+all: build up
 
 build: 
 	cd $(SRC) && sudo docker-compose build

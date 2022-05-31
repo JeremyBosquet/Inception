@@ -1,4 +1,4 @@
-FROM debian:10.12
+FROM debian:buster
 
 ARG DB_NAME
 ARG DB_PASSWORD

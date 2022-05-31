@@ -1,4 +1,4 @@
-FROM debian:10.12
+FROM debian:buster
 WORKDIR /var/lib/mysql
 COPY ./conf/start.sh /tmp/start.sh
 COPY ./conf/wordpress.sql /tmp/wordpress.sql
