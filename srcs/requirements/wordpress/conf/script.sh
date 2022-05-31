@@ -10,3 +10,6 @@ sed -i 's/password_here/$MYSQL_PASSWORD/g' /var/www/html/wp-config-sample.php
 
 #Change file name to wp-config.php
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+
+#Change permissions files
+chown -Rf www-data:www-data /var/www/html

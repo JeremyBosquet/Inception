@@ -22,7 +22,10 @@ services:
   container_name: nginx
   depends_on:
    - wp
-  build: requirements/nginx
+  build: 
+   context: requirements/nginx
+   args:
+    - DOMAIN=${DOMAIN_NAME}
   ports:
    - "443:443"
   volumes:

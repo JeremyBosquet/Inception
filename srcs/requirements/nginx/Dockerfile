@@ -1,10 +1,15 @@
 FROM debian:buster
+
+ARG DOMAIN
+ENV DOMAIN_NAME=$DOMAIN
+
 RUN apt-get update && apt-get upgrade -y && \
 	apt-get install nginx openssl -y
 
+COPY ./conf/start.sh /tmp/
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
-RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/ssl/jbosquet.42.fr.crt -keyout /etc/ssl/jbosquet.42.fr.key -subj "/C=FR/ST=France/L=Lyon/O=42Lyon/OU=jbosquet/CN=jbosquet.42.fr"
+RUN chmod +x /tmp/start.sh && sh /tmp/start.sh
 
 CMD ["nginx", "-g", "daemon off;"]
 
