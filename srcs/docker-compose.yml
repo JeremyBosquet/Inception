@@ -11,6 +11,7 @@ services:
     - DB_USER=${MYSQL_USER}
     - DB_PASSWORD=${MYSQL_PASSWORD}
     - DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  image: wordpress
   ports:
    - "9000"
   networks:
@@ -26,6 +27,7 @@ services:
    context: requirements/nginx
    args:
     - DOMAIN=${DOMAIN_NAME}
+  image: nginx
   ports:
    - "443:443"
   volumes:
@@ -44,6 +46,7 @@ services:
     - DB_USER=${MYSQL_USER}
     - DB_PASSWORD=${MYSQL_PASSWORD}
     - DB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  image: mariadb
   ports:
    - "3306"
   volumes:
