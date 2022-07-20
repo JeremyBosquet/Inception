@@ -30,14 +30,13 @@ RUN apt-get update && apt-get install wget \
 	unzip \
 	-y
 
-RUN wget https://fr.wordpress.org/latest-fr_FR.zip && unzip latest-fr_FR.zip && mv wordpress/* . && rm -rf wordpress
+RUN wget https://wordpress.org/latest.zip && unzip latest.zip && mv wordpress/* . && rm -rf wordpress
 
-RUN chmod +x script.sh && sh script.sh
-RUN rm -rf wp-config.php
-COPY ./conf/wp-config.php .
+RUN chmod +x script.sh 
 
 RUN mkdir /run/php
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
-
+ENTRYPOINT ["/bin/sh", "script.sh"]
 EXPOSE 9000
+
+CMD ["/usr/sbin/php-fpm7.3", "-F"]
